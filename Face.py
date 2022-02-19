@@ -21,7 +21,6 @@ def predictFace(recievedImage):
   classNames=[]
   myList = os.listdir(path)
   print(myList)
-
   for cl in myList:
       curImg = cv2.imread(f'{path}/{cl}')
       images.append(curImg)
@@ -30,7 +29,13 @@ def predictFace(recievedImage):
   print(classNames)    
   encodeListKnown = findEncodings(images)
   print(len(encodeListKnown))
-  img =recievedImage
+  # load input image and grab its spatial dimensions
+  nparr = np.fromstring(raw_image.data, np.uint8)
+  # decode image
+  img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+  # img =recievedImage
+  # image = cv2.imread(recievedImage)
+  # img = np.array(image)
   # np.array(img)
   # # print(img)
   #  imgs= cv2.resize(img , (0,0) , None , 0.25,0.25)
